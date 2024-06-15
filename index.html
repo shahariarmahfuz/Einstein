@@ -1,181 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nested Animated Box</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archived Effect with Black Background</title>
+  <style>
     body {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        min-height: 100vh;
-        background: #ff9398; /* Updated premium color */
-        margin: 0;
-        color: #000000;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        flex-direction: column;
-        padding: 20px;
-        box-sizing: border-box;
-        overflow-y: auto;
-    }
-
-    .outer-box {
-        position: relative;
-        width: 100%;
-        max-width: 600px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.4);
-        margin-bottom: 20px;
-        padding: 20px;
-        box-sizing: border-box;
-        overflow: hidden; /* Clip inner content */
-    }
-
-    .inner-box {
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        animation: float 5s infinite ease-in-out;
-    }
-
-    @keyframes float {
-        0%, 100% {
-            transform: translateX(0) translateY(0);
-        }
-        25% {
-            transform: translateX(80%) translateY(-80%);
-        }
-        50% {
-            transform: translateX(80%) translateY(80%);
-        }
-        75% {
-            transform: translateX(-80%) translateY(80%);
-        }
-    }
-
-    @keyframes bounce {
-        0%, 100% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-50%);
-        }
-    }
-
-    @keyframes rotate {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-
-    @keyframes scale {
-        0%, 100% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.5);
-        }
-    }
-
-    .outer-box::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(45deg, #ff6b6b, #ff7675); /* Updated gradient color */
-        opacity: 0.8;
-        pointer-events: none;
-        border-radius: 10px;
-    }
-
-    .outer-box h2 {
-        margin-top: 0;
-        font-size: 28px;
-        color: #0;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        text-align: center; /* Center align heading */
-    }
-
-    .outer-box p {
-        color: #1b1b1b;
-        font-size: 13px;
-        line-height: 1.6;
-        text-align: right-side; /* Center align paragraph */
-        opacity: 0; /* Initially hidden */
-        animation: fadeIn 2s forwards; /* Apply fade-in animation */
-        animation-delay: 1s; /* Delay to start the animation */
+      background-color: #000000;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-y: auto;
+      animation: fadeIn 2s ease-in-out;
     }
 
     @keyframes fadeIn {
-        to {
-            opacity: 1;
-        }
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
     }
 
-    .outer-box h3 {
-        opacity: 0; /* Initially hidden */
-        transform: translateX(-100%); /* Start off-screen to the left */
-        animation: slideIn 2s forwards; /* Apply slide-in animation */
-        animation-delay: 1s; /* Delay to start the animation */
-        font-size: 18px;
-        color: #000000;
-        text-align: center; /* Center align heading */
+    .archived {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: linear-gradient(45deg, #1a1a1a, #000000, #1a1a1a);
+      background-size: 400% 400%;
+      animation: archivedAnimation 10s infinite;
+      z-index: -1;
     }
 
-    @keyframes slideIn {
-        to {
-            opacity: 1;
-            transform: translateX(0); /* Slide into place */
-        }
+    @keyframes archivedAnimation {
+      0% {
+        background-position: 0% 0%;
+      }
+      100% {
+        background-position: 400% 400%;
+      }
     }
 
-    .inner-box.bounce {
-        animation: bounce 2s infinite;
+    .glass-box {
+      margin-top: 20px;
+      width: 300px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      color: #ffffff;
+      z-index: 2;
     }
 
-    .inner-box.rotate {
-        animation: rotate 4s infinite linear;
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      transition: box-shadow 0.3s ease-in-out;
     }
 
-    .inner-box.scale {
-        animation: scale 3s infinite ease-in-out;
+    .profile-pic:hover {
+      box-shadow: 0 0 25px rgba(255, 255, 255, 1);
     }
-</style>
+
+    .content {
+      position: relative;
+      padding: 20px;
+      overflow: hidden;
+      text-align: left;
+      animation: contentFadeIn 3s ease-in-out;
+    }
+
+    @keyframes contentFadeIn {
+      0% {
+        transform: translateY(0%);
+        opacity: 0;
+      }
+      50% {
+        transform: translateY(0%);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(0%);
+        opacity: 1;
+      }
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .center-align {
+      text-align: center;
+    }
+
+    .background-text {
+      position: fixed;
+      bottom: 50px;
+      width: 100%;
+      background-color: #000000;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+      z-index: 0;
+      pointer-events: none; /* Disable pointer events to make sure it's not interactive */
+    }
+
+    .background-text a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease-in-out;
+      padding: 0 10px;
+      pointer-events: auto; /* Re-enable pointer events for links */
+    }
+
+    .background-text a:hover {
+      color: #ffffff;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+      width: 100%;
+      padding: 10px 0;
+      z-index: 1;
+      background-color: #000000;
+      position: relative;
+      margin-top: 20px; /* Footer এর উপরে কিছু ফাঁকা স্থান রাখা */
+     
+  </style>
 </head>
 <body>
+  <div class="archived"></div>
+  <div class="glass-box">
+    <img src="https://w0.peakpx.com/wallpaper/19/234/HD-wallpaper-albert-einstein-einstein-eyes-glass-gray-inteligence-knowledge-math-mustache-old-science.jpg" alt="Profile Picture" class="profile-pic">
+    <div class="content">
+      <h2 class="center-align">Albert Einstein</h2>
+      <p class="center-align" style="color: #cccccc; font-size: 16px;">learn about his life</p>
+      <p>Albert Einstein, born on March 14, 1879, in the city of Ulm, Germany, emerged as a preeminent figure in the annals of science, renowned not only for his groundbreaking theories but also for his profound impact on the course of human understanding. From an early age, Einstein displayed an exceptional curiosity and aptitude for mathematics and physics, a trait that would define his lifelong pursuit of unraveling the mysteries of the universe.</p>
 
-<div class="outer-box">
-    <div class="inner-box bounce"></div>
-    <div class="inner-box rotate" style="top: 60px; left: 60px;"></div>
-    <div class="inner-box scale" style="top: 120px; left: 120px;"></div>
-    <h3>Einstein's equation E = mc^2</h3>
-    <p>To solve Einstein's equation ( E = mc^2 ), let's break down what each symbol represents and how the equation works.</p>
+      <p>Einstein's academic journey commenced at the Luitpold Gymnasium in Munich, where he received his early education. It was here that his teachers recognized his exceptional mathematical abilities, though he struggled with the rigidity of the school's environment. His family later moved to Italy, where he continued his education at the Aarau Cantonal School, a more progressive institution that allowed him greater intellectual freedom. At Aarau, Einstein delved deeper into his studies, particularly in mathematics and physics, setting the stage for his future academic endeavors.</p>
 
-<p>Firstly, ( E ) stands for energy, ( m ) represents mass, and ( c ) is the speed of light in a vacuum, a fundamental constant in physics approximately equal to ( 3 times 10^8 ) meters per second ( 300,000,000 ) m/s).</p>
+    <p>In 1896, Einstein returned to Switzerland and enrolled at the Swiss Federal Institute of Technology (ETH Zurich) in Zurich, where he pursued a degree in physics and mathematics. Despite his brilliance, he faced challenges due to the rigid academic environment and clashed with some professors. However, he found mentors who recognized his potential, including Heinrich Weber and Hermann Minkowski, whose teachings would influence his later work profoundly.</p>
 
-<p>The equation ( E = mc^2 ) expresses the relationship between mass and energy. It implies that mass ( m ) can be converted into energy ( E ), and vice versa, under specific conditions as dictated by Einstein's theory of special relativity. This equation suggests that even a small amount of mass contains a tremendous amount of energy, due to the enormous value of ( c^2 ).</p>
+<p>After graduating from ETH Zurich in 1900 with a diploma in teaching physics and mathematics, Einstein faced difficulties securing a suitable academic position. He spent the following years working as a tutor and applying for academic posts without success, which led him to take a position as a technical assistant examiner at the Swiss Patent Office in Bern in 1902.</p>
+<p>This seemingly mundane job provided him with the stability to pursue his scientific interests independently, offering him time to engage deeply with theoretical physics.</p>
+<p>It was during his tenure at the Patent Office that Einstein began to develop the revolutionary ideas that would reshape the foundations of physics. In 1905, often referred to as his "Annus Mirabilis" or miracle year, Einstein published four papers in the prestigious Annalen der Physik journal.</p>
+<p>These papers laid the groundwork for modern physics and established Einstein as a leading figure in the scientific community.</p>
+<p>The first paper introduced the theory of <strong>special relativity</strong>, which fundamentally transformed our understanding of space, time, and motion. Einstein proposed that the laws of physics are the same for all observers in uniform motion relative to each other and that the speed of light in a vacuum is constant, regardless of the motion of the light source or observer.</p>
+<p>This theory revolutionized concepts of simultaneity and demonstrated that time and space are interwoven into a single continuum known as spacetime. The cornerstone of special relativity is the famous equation <strong>E = mc<sup>2</sup></strong>, which expresses the equivalence of energy (E) and mass (m) and underscores the profound relationship between mass and energy.</p>
+<p>In his second paper of 1905, Einstein elucidated the <strong>photoelectric effect</strong>, demonstrating that light could be understood as quanta of energy (photons) rather than just as waves. This breakthrough laid the groundwork for the development of quantum theory, challenging classical physics and contributing significantly to the understanding of the behavior of electrons and other elementary particles.</p>
+<p>Einstein's third paper in 1905 delved into the phenomenon of <strong>Brownian motion</strong>, providing compelling evidence for the existence of atoms and molecules. By analyzing the random motion of particles suspended in a fluid, Einstein provided a theoretical framework that supported the atomic theory of matter, which had been debated for centuries.</p>
+<p>His work on Brownian motion not only confirmed the existence of atoms but also provided a quantitative method for determining Avogadro's number, a fundamental constant in chemistry.</p>
+<p>The fourth paper published in 1905 addressed the <strong>special theory of relativity</strong>, reconciling mechanics with electromagnetism and introducing the concept of spacetime. This theory extended the principles of special relativity to non-inertial frames of reference and laid the groundwork for Einstein's subsequent work on the <strong>general theory of relativity</strong>.</p>
+<p>Einstein's general theory of relativity, published in 1915, represents one of the most significant advancements in the history of physics. Building on the principles of special relativity, Einstein proposed that gravity is not a force but rather a curvature of spacetime caused by the presence of mass and energy.</p>
+<p>According to general relativity, massive objects such as planets and stars distort the fabric of spacetime, creating a gravitational field that influences the motion of other objects within it. This theory provided a new understanding of gravitation, predicting phenomena such as the bending of light by gravity and the existence of gravitational waves.</p>
+<p>The mathematical formulation of general relativity involves a set of complex equations known as the <strong>Einstein field equations</strong>, which describe how mass and energy determine the curvature of spacetime. These equations have been instrumental in predicting and explaining numerous astrophysical phenomena, from the behavior of black holes to the expansion of the universe itself.</p>
+<p>Einstein's theories of relativity revolutionized our understanding of the cosmos, challenging long-held beliefs and paving the way for new avenues of scientific inquiry. His work laid the foundation for modern physics, influencing fields as diverse as cosmology, particle physics, and quantum mechanics.</p>
+<p>Beyond his scientific achievements, Einstein's theories had profound philosophical implications, reshaping notions of space, time, and the nature of reality itself.</p>
+<p>Throughout his life, Einstein remained deeply engaged in scientific research and philosophical discourse. He held academic positions at various institutions, including the University of Zurich, Charles University in Prague, and the Prussian Academy of Sciences in Berlin.</p>
+<p>In 1914, he was appointed director of the Kaiser Wilhelm Institute for Physics in Berlin, where he continued his research and mentored numerous young physicists.</p>
+<p>Einstein's public stature grew significantly during the early 20th century, as he became a prominent advocate for pacifism, civil rights, and social justice. He opposed militarism and nationalism, particularly during World War I, when he actively campaigned for disarmament and peaceful resolution of conflicts.</p>
+<p>His pacifist beliefs led to strained relations with some of his colleagues and authorities, but he remained steadfast in his commitment to promoting international cooperation and understanding.</p>
+<p>In 1933, Einstein made the pivotal decision to leave Nazi Germany and immigrate to the United States, where he accepted a position at the Institute for Advanced Study in Princeton, New Jersey. This move marked a new phase in his career, as he continued to pursue research in theoretical physics and collaborate with leading scientists from around the world.</p>
+<p>During his later years, Einstein focused on developing a unified field theory that would encompass all fundamental forces of nature within a single framework. Although he made significant strides in this endeavor, achieving a unified theory of everything remained elusive, and Einstein's efforts ultimately influenced subsequent generations of physicists working toward this ambitious goal.</p>
+<p>Einstein's contributions to science and humanity were recognized with numerous awards and honors, including the Nobel Prize in Physics in 1921 for his explanation of the photoelectric effect.</p>
+<p>He became a global symbol of intellectual achievement and moral integrity, celebrated not only for his scientific brilliance but also for his humanitarian ideals and commitment to using knowledge for the betterment of society.</p>
+<p>Albert Einstein passed away on April 18, 1955, leaving behind a lasting legacy that continues to inspire and influence scientists, philosophers, and thinkers worldwide.</p>
+<p>His theories of relativity and contributions to quantum theory have reshaped our understanding of the universe, opening new frontiers in scientific exploration and pushing the boundaries of human knowledge.</p>
+<p>Einstein's intellectual curiosity, creativity, and unwavering dedication to truth and justice remain a beacon for future generations, reminding us of the transformative power of ideas and the enduring quest for understanding the mysteries of existence.</p>
+      
+    </div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2024 Shahariar Mahfuz. All rights reserved.</p>
+  </footer>
 
-<p>To understand this concept more deeply, consider the implications of this equation in various contexts:</p>
+  <div class="background-text">
+    <a href="https://example.com">Back to Homepage</a>
+  </div>
 
-<p>1. **Nuclear Energy:** One of the most practical applications of ( E = mc^2 ) is in the field of nuclear energy. In nuclear reactions, such as those occurring in nuclear power plants or nuclear weapons, a small amount of mass is converted into an enormous amount of energy. This process involves nuclear fission (splitting of atomic nuclei) or fusion (merging of atomic nuclei), where the mass lost in the reactions corresponds to a release of energy according to Einstein's equation.</p>
-
-<p>2. **Cosmology:** In the early universe, during the Big Bang, vast amounts of energy were generated from the conversion of mass as the universe expanded and cooled. Understanding this conversion helps cosmologists to model the evolution of the universe and the formation of structures within it.</p>
-
-<p>3. **Particle Physics:** At the subatomic level, particles and antiparticles can annihilate each other, converting their mass into pure energy. This process is another illustration of ( E = mc^2 ) in action, showing how mass and energy are interchangeable on a microscopic scale.</p>
-
-<p>4. **Practical Applications:** Beyond nuclear energy, Einstein's equation underpins technologies such as medical imaging (e.g., PET scans) and even space exploration (e.g., understanding the energy requirements for interstellar travel).</p>
-
-<p>In summary, Einstein's equation ( E = mc^2 ) is not just a theoretical curiosity but a fundamental principle that has reshaped our understanding of the universe and revolutionized fields ranging from energy production to cosmology. Its elegant simplicity belies its profound implications, demonstrating that mass and energy are two sides of the same coin, connected by the speed of light squared.</p>
-</div>
-
+  </script>
 </body>
 </html>
